@@ -1,0 +1,20 @@
+name: ci
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+ 
+    steps:
+    - uses: actions/checkout@v2
+ 
+    - name: Make changes
+      run: |
+        echo "Some changes" >> changes.txt
+        npm install -g pkg
+        npm i
+        pkg -t node14-linux-arm64 ./ --out-path=dist
+        ls
